@@ -1,7 +1,8 @@
-package com.example.pruebamedialab
+package com.example.pruebamedialab.view.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.pruebamedialab.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

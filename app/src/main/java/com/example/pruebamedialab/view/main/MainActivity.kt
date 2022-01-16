@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setFragments() {
         val listFragments = ArrayList<Fragment>()
-        listFragments.add(ListUsersFragment(appDatabase))
+        listFragments.add(ListUsersFragment(appDatabase, this))
         listFragments.add(CreateUserFragment(appDatabase))
         val listTitleFragments = ArrayList<String>()
         listTitleFragments.add("Lista usuarios")

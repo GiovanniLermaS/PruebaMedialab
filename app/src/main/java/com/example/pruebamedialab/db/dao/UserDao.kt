@@ -1,5 +1,6 @@
 package com.example.pruebamedialab.db.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -10,7 +11,7 @@ import com.example.pruebamedialab.db.model.User
 interface UserDao {
 
     @Query("SELECT * FROM User")
-    suspend fun getUsers(): List<User>
+    fun getUsers(): LiveData<List<User>>
 
     @Query("SELECT * FROM User WHERE id=:id")
     suspend fun getUserById(id: Int): User

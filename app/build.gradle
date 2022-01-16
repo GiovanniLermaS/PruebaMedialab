@@ -34,6 +34,9 @@ android {
     }
     buildToolsVersion '32.0.0'
     compileSdkVersion 32
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {

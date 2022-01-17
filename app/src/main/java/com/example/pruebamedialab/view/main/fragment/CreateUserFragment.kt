@@ -24,6 +24,7 @@ class CreateUserFragment(val appDatabase: AppDatabase) : Fragment() {
     ): View {
         _binding = FragmentCreateUserBinding.inflate(inflater, container, false)
         clickCreateUser()
+        clickDeleteUser()
         return binding.root
     }
 
@@ -54,6 +55,31 @@ class CreateUserFragment(val appDatabase: AppDatabase) : Fragment() {
                 }
             } else {
                 Toast.makeText(activity, "Llena los campos", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    private fun clickDeleteUser() {
+        binding.btDelete.setOnClickListener {
+            if (binding.etEmail.text.toString().isNotEmpty()) {
+                lifecycleScope.launch {
+                    val user = appDatabase.userDao().getUserByEmail(binding.etEmail.text.toString())
+                    if (user.name == null) {
+                        Toast.makeText(activity, "Usuario no encontrado", Toast.LENGTH_LONG).show()
+                    } else {
+                        appDatabase.userDao().deleteUserById(user.id)
+                        Toast.makeText(
+                            activity,
+                            "Usuario eliminado correctamente",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        binding.etName.setText("")
+                        binding.etBio.setText("")
+                        binding.etEmail.setText("")
+                    }
+                }
+            } else {
+                Toast.makeText(activity, "Campo correo vacío", Toast.LENGTH_LONG).show()
             }
         }
     }

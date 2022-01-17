@@ -38,7 +38,8 @@ class ListUsersFragment(
         appDatabase.userDao().getUsersLiveData().observe(lifecycleOwner, { listUsers ->
             if (listUsers.isNotEmpty()) {
                 if (listUsersAdapter == null) {
-                    listUsersAdapter = ListUsersAdapter(listUsers as ArrayList<User>)
+                    listUsersAdapter =
+                        activity?.let { ListUsersAdapter(listUsers as ArrayList<User>, it) }
                     binding.rvListUsers.adapter = listUsersAdapter
                 } else {
                     listUsersAdapter?.setItems(listUsers as ArrayList<User>)

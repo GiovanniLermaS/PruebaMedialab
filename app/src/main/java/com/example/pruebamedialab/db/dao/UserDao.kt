@@ -11,10 +11,10 @@ import com.example.pruebamedialab.db.model.User
 interface UserDao {
 
     @Query("SELECT * FROM User")
-    fun getUsers(): LiveData<List<User>>
+    fun getUsersLiveData(): LiveData<List<User>>
 
-    @Query("SELECT * FROM User WHERE id=:id")
-    suspend fun getUserById(id: Int): User
+    @Query("SELECT * FROM User WHERE email=:email")
+    suspend fun getUserByEmail(email: String): User
 
     @Query("DELETE FROM User WHERE id=:id")
     suspend fun deleteUserById(id: Int)

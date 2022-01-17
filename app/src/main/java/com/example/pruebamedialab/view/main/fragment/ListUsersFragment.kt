@@ -35,14 +35,13 @@ class ListUsersFragment(
     }
 
     private fun getUsersShowList() {
-        appDatabase.userDao().getUsers().observe(lifecycleOwner, { listUsers ->
+        appDatabase.userDao().getUsersLiveData().observe(lifecycleOwner, { listUsers ->
             if (listUsers.isNotEmpty()) {
-                if (listUsersAdapter != null) {
+                if (listUsersAdapter == null) {
                     listUsersAdapter = ListUsersAdapter(listUsers as ArrayList<User>)
                     binding.rvListUsers.adapter = listUsersAdapter
                 } else {
                     listUsersAdapter?.setItems(listUsers as ArrayList<User>)
-                    listUsersAdapter?.notifyDataSetChanged()
                 }
             }
         }

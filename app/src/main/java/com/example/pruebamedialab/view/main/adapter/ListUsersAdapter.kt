@@ -20,7 +20,7 @@ class ListUsersAdapter(private var users: ArrayList<User>) :
         viewType: Int
     ): ViewHolder {
         val v = LayoutInflater.from(parent.context)
-            .inflate(R.layout.view_user, parent, false) as TextView
+            .inflate(R.layout.view_user, parent, false)
         return ViewHolder(v)
     }
 
@@ -40,7 +40,9 @@ class ListUsersAdapter(private var users: ArrayList<User>) :
         return users.size
     }
 
-    fun setItems(users: ArrayList<User>){
-        this.users = users
+    fun setItems(users: ArrayList<User>) {
+        this.users.clear()
+        this.users.addAll(users)
+        this.notifyDataSetChanged()
     }
 }

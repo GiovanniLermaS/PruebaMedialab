@@ -7,10 +7,10 @@ import java.io.Serializable
 
 @Entity
 data class User(
-    @ColumnInfo(name = "name") val name: String?,
+    @ColumnInfo(name = "name") var name: String?,
     @ColumnInfo(name = "image") val image: Int?,
-    @ColumnInfo(name = "bio") val bio: String?,
-    @ColumnInfo(name = "email") val email: String?,
+    @ColumnInfo(name = "bio") var bio: String?,
+    @ColumnInfo(name = "email") var email: String?,
 ) : Serializable {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

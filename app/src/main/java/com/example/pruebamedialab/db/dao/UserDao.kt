@@ -21,4 +21,7 @@ interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun setUser(user: User): Long
+
+    @Query("UPDATE user SET name=:name, bio=:bio, email=:email WHERE id = :id")
+    suspend fun updateUser(name: String?, bio: String?, email: String?, id: Int)
 }
